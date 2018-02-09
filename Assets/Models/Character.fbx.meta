@@ -1,45 +1,54 @@
 fileFormatVersion: 2
-guid: 7c5b0757e5621d54d88ebf0c26bd3892
-timeCreated: 1518218181
+guid: 57d4ab4fa6731482b8ead92989d29584
+timeCreated: 1518218377
 licenseType: Free
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 21
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: pCube1
-    100004: pSphere1
-    100006: pSphere2
-    100008: pSphere3
-    100010: pSphere4
-    100012: pSphere5
-    100014: transform1
-    100016: transform2
-    100018: transform3
-    100020: transform4
-    100022: transform5
-    400000: //RootNode
-    400002: pCube1
-    400004: pSphere1
-    400006: pSphere2
-    400008: pSphere3
-    400010: pSphere4
-    400012: pSphere5
-    400014: transform1
-    400016: transform2
-    400018: transform3
-    400020: transform4
-    400022: transform5
-    2100000: lambert1
-    2300000: pSphere5
-    3300000: pSphere5
-    4300000: pSphere5
+    100000: Armature
+    100002: Bone.002
+    100004: Bone.003
+    100006: Bone.003_end
+    100008: Bone.004
+    100010: Bone.005
+    100012: Bone.005_end
+    100014: Bone.006
+    100016: Bone.007
+    100018: Bone.007_end
+    100020: Bone.009
+    100022: Bone.010
+    100024: Bone.010_end
+    100026: Camera
+    100028: //RootNode
+    100030: Cube
+    100032: Lamp
+    400000: Armature
+    400002: Bone.002
+    400004: Bone.003
+    400006: Bone.003_end
+    400008: Bone.004
+    400010: Bone.005
+    400012: Bone.005_end
+    400014: Bone.006
+    400016: Bone.007
+    400018: Bone.007_end
+    400020: Bone.009
+    400022: Bone.010
+    400024: Bone.010_end
+    400026: Camera
+    400028: //RootNode
+    400030: Cube
+    400032: Lamp
+    2000000: Camera
+    4300000: Cube
+    7400000: Armature|ArmatureAction
     9500000: //RootNode
-  externalObjects: {}
+    10800000: Lamp
+    13700000: Cube
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -52,7 +61,6 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -77,8 +85,6 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
-    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
