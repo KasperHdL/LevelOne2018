@@ -14,7 +14,7 @@ public class Dash : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (Input.GetAxis("Dash") > 0)
+		if (Input.GetKey(KeyCode.LeftShift))
 		{
 			Vector3 nearestForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
 			_playerRigidbody.AddForce(nearestForward * _dashForce, ForceMode.Impulse);
