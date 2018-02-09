@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dash : MonoBehaviour
+public class Push : MonoBehaviour
 {
-    [SerializeField] private float _pushForce = 30;
+    [SerializeField] private float _pushForce = 10;
     [SerializeField] private float _pushDistance = 20;
     private Rigidbody _playerRigidbody;
 
@@ -20,8 +20,7 @@ public class Dash : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Vector3 nearestForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
-            //_playerRigidbody.AddForce(nearestForward * _dashForce, ForceMode.Impulse);
-            Physics.RaycastAll(transform.position, nearestForward, _pushDistance);
+            hits = Physics.RaycastAll(transform.position, nearestForward, _pushDistance);
 
             for( int i = 0; i < hits.Length; i++)
             {
@@ -30,7 +29,7 @@ public class Dash : MonoBehaviour
 
                 if (body)
                 {
-                    body.AddForce(nearestForward * _dashForce, ForceMode.Impulse);
+                    body.AddForce(nearestForward * _pushForce, ForceMode.Impulse);
                 }
             }
         }
