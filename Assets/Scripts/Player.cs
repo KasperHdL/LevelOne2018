@@ -5,7 +5,7 @@ using UnityEngine;
 using InControl;
 
 public class Player : MonoBehaviour {
-
+    public int id; 
 
 	private Rigidbody body;
 	public float movementForce = 5;
