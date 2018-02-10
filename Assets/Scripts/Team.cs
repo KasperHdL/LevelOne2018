@@ -49,13 +49,13 @@ public class Team : MonoBehaviour {
 
 
     public TwoAxisInputControl GetLeftStick(int playerId){
-        return inputDevices[playerId].LeftStick;
+        return inputDevices[playerId % 2].LeftStick;
     }
     public TwoAxisInputControl GetRightStick(int playerId){
-        return inputDevices[playerId].RightStick;
+        return inputDevices[playerId % 2].RightStick;
     }
     public TwoAxisInputControl GetDPad(int playerId){
-        return inputDevices[playerId].DPad;
+        return inputDevices[playerId % 2].DPad;
     }
 
 
