@@ -15,7 +15,7 @@ MonoBehaviour:
   movementVelocity: 4
   airForce: 500
   jumpForce: 5
-  distanceFromGround: 0.6
+  distanceFromGround: 1
   dashDelay: 0.5
   dashForce: 5000
   dashVelocity: 8
@@ -24,4 +24,4 @@ MonoBehaviour:
   pushForce: 10
   pushDistance: 20
   pushDegrees: 45
-  deathTorque: 50000
+  deathTorque: 500
