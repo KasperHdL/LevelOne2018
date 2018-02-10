@@ -200,7 +200,6 @@ GameObject:
   - component: {fileID: 33824326135507572}
   - component: {fileID: 23545688962966116}
   - component: {fileID: 54832903951910436}
-  - component: {fileID: 96754741697142518}
   m_Layer: 0
   m_Name: Spring
   m_TagString: Untagged
@@ -600,6 +599,7 @@ GameObject:
   - component: {fileID: 4549003261665938}
   - component: {fileID: 33374112265863232}
   - component: {fileID: 23360134151700524}
+  - component: {fileID: 96278011227859208}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -1477,13 +1477,13 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!96 &96754741697142518
+--- !u!96 &96278011227859208
 TrailRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1378323732735996}
+  m_GameObject: {fileID: 1942111910023722}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
