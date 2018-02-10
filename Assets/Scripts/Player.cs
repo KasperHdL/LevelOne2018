@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
     public int id; 
 
 	private Rigidbody body;
+    private Animator animator;
 
     public PlayerSettings settings;
     private bool onGround = true;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour {
 	void Start ()
 	{
 		body = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
         groundMask = LayerMask.GetMask("Ground");
 	}
 
@@ -29,6 +31,11 @@ public class Player : MonoBehaviour {
         if(team == null){
             return;
         }
+
+        // Reset animation values
+        animator.SetBool("Jump", false);
+        animator.SetBool("Dashing", false);
+        animator.SetBool("Push", false);
 
         onGround = Physics.Raycast(transform.position, Vector3.down, settings.distanceFromGround, groundMask);
 
@@ -49,6 +56,7 @@ public class Player : MonoBehaviour {
         if(onGround){
             if(team.GetActionState(id, Action.Jump).WasPressed){
                 body.AddForce(Vector3.up * settings.jumpForce, ForceMode.Impulse);
+                animator.SetBool("Jump", true);
             }
         }
 
@@ -59,6 +67,7 @@ public class Player : MonoBehaviour {
             if(team.GetActionState(id, Action.Dash).WasPressed){
                 body.AddForce(nearestForward * settings.dashForce, ForceMode.Impulse);
                 nextDash = Time.time + settings.dashDelay;
+                animator.SetBool("Dashing", true);
             }
         }
 
@@ -67,6 +76,7 @@ public class Player : MonoBehaviour {
         RaycastHit[] hits;
 
         if (team.GetActionState(id, Action.Push).WasPressed){
+            animator.SetBool("Push", true);
             hits = Physics.SphereCastAll(transform.position, settings.pushDistance, nearestForward, 0.0001f);
 
             for( int i = 0; i < hits.Length; i++)
@@ -87,5 +97,8 @@ public class Player : MonoBehaviour {
                 }
             }
         }
+
+        // Animation
+        animator.SetFloat("Speed", body.velocity.magnitude);
 	}
 }
