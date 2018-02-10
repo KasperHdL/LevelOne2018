@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
 	private Rigidbody body;
 
     public PlayerSettings settings;
+    private bool onGround = true;
     private float nextDash;
 
 
@@ -37,6 +38,8 @@ public class Player : MonoBehaviour {
             return;
         }
 
+        onGround = Physics.Raycast(transform.position, Vector3.down, settings.distanceFromGround, groundMask);
+
         Vector2 input = inputDevice.LeftStick.Value;
 		Vector3 movementdirection = new Vector3(input.x, 0, input.y);
 
@@ -45,12 +48,12 @@ public class Player : MonoBehaviour {
         if(movementdirection != Vector3.zero){
             Quaternion lookRot = Quaternion.LookRotation(movementdirection);
             body.transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 30);
-            body.AddForce(movementdirection * settings.movementForce, ForceMode.Acceleration);
+            float force = (onGround ? settings.movementForce : settings.airForce);
+            body.AddForce(movementdirection * force, ForceMode.Acceleration);
         }
 
         //Jump
-
-        if(Physics.Raycast(transform.position, Vector3.down, settings.distanceFromGround, groundMask)){
+        if(onGround){
             if(inputDevice.Action1.WasPressed){
                 body.AddForce(Vector3.up * settings.jumpForce, ForceMode.Impulse);
             }

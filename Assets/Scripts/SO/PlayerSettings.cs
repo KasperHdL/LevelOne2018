@@ -8,6 +8,7 @@ public class PlayerSettings : ScriptableObject {
 
     [Header("Movement")]
 	public float movementForce = 5;
+	public float airForce = 5;
 
     [Header("Jump")]
 	public float jumpForce = 5;
