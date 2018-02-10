@@ -34,9 +34,9 @@ public class Player : MonoBehaviour {
 
         Vector2 input = team.GetLeftStick(id).Value;
 
-        if(input != Vector2.zero){
+        if(input.magnitude > 0.25f){
             Vector3 movementdirection = new Vector3(input.x, 0, input.y);
-            movementdirection = movementdirection.normalized;
+            movementdirection = movementdirection.normalized * input.magnitude;
 
             Quaternion lookRot = Quaternion.LookRotation(movementdirection);
             transform.rotation = lookRot;
