@@ -64,6 +64,7 @@ public class Player : MonoBehaviour {
         if(onGround){
             if(team.GetActionState(id, Action.Jump).WasPressed){
                 body.AddForce(Vector3.up * settings.jumpForce, ForceMode.Impulse);
+                onGround = false;
 
                 GameEventHandler.TriggerEvent(GameEvent.Jump, (GameEventArgs)playerArgument);
             }
@@ -114,6 +115,7 @@ public class Player : MonoBehaviour {
             if (team.GetActionState(id, Action.Push).WasPressed)
             {
                 nextPush = Time.time + settings.pushDelay;
+                pushOnCooldown = true;
 
                 GameEventHandler.TriggerEvent(GameEvent.Push, (GameEventArgs)playerArgument);
                 hits = Physics.SphereCastAll(transform.position, settings.pushDistance, nearestForward, 0.0001f);
