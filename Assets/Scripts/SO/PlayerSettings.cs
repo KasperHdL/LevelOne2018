@@ -8,6 +8,7 @@ public class PlayerSettings : ScriptableObject {
 
     [Header("Movement")]
 	public float movementForce = 5;
+    public float movementVelocity;
 	public float airForce = 5;
 
     [Header("Jump")]
@@ -17,8 +18,11 @@ public class PlayerSettings : ScriptableObject {
     [Header("Dash")]
     public float dashDelay;
     public float dashForce;
+    public float dashVelocity;
+    public float dashTime;
     
     [Header("Push")]
+    public float pushDelay;
     public float pushForce = 10;
     public float pushDistance = 20;
     public float pushDegrees = 45;
