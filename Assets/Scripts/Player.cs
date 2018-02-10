@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+<<<<<<< HEAD
 using InControl;
 
 public class Player : MonoBehaviour {
@@ -104,4 +105,9 @@ public class Player : MonoBehaviour {
             }
         }
 	}
+=======
+public class Player : MonoBehaviour
+{
+	public int id;
+>>>>>>> master
 }
