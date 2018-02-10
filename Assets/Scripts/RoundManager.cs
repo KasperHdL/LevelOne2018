@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RoundManager : MonoBehaviour 
+public class RoundManager : MonoBehaviour
 {
 	public float secondsTillRespawn = 5;
 	public int[] playerScores;
