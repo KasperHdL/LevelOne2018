@@ -16,8 +16,9 @@ MonoBehaviour:
   jumpForce: 5
   distanceFromGround: 0.5
   dashDelay: 0.5
-  dashForce: 10
-  dashTime: 1
+  dashForce: 1.5
+  dashTime: 0.5
+  pushDelay: 0.5
   pushForce: 10
   pushDistance: 20
   pushDegrees: 45

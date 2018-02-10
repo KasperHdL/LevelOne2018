@@ -49,15 +49,22 @@ public class Player : MonoBehaviour {
 
         Vector2 input = team.GetLeftStick(id).Value;
 
-        if(input.magnitude > 0.25f){
-            Vector3 movementdirection = new Vector3(input.x, 0, input.y);
-            movementdirection = movementdirection.normalized * input.magnitude;
+        if (!isDashing)
+        {
+            if(input.magnitude > 0.25f){
+                Vector3 movementdirection = new Vector3(input.x, 0, input.y);
+                movementdirection = movementdirection.normalized * input.magnitude;
 
-            Quaternion lookRot = Quaternion.LookRotation(movementdirection);
-            transform.rotation = lookRot;
+                Quaternion lookRot = Quaternion.LookRotation(movementdirection);
+                transform.rotation = lookRot;
 
-            float force = (onGround ? settings.movementForce : settings.airForce);
-            body.AddForce(movementdirection * force * Time.deltaTime);
+                float force = (onGround ? settings.movementForce : settings.airForce);
+                
+                if (body.velocity.magnitude < settings.movementVelocity)
+                {
+                    body.AddForce(movementdirection * force * Time.deltaTime);
+                }
+            }
         }
 
         //Jump
@@ -94,7 +101,12 @@ public class Player : MonoBehaviour {
         if (isDashing && currentDashTime < settings.dashTime)
         {
             currentDashTime += Time.deltaTime;
-            body.AddForce(nearestForward * settings.dashForce, ForceMode.Impulse);
+            Debug.Log(body.velocity.magnitude);
+
+            if (body.velocity.magnitude < settings.dashVelocity)
+            {
+                body.AddForce(nearestForward * settings.dashForce * Time.deltaTime);
+            }
         } else if (isDashing)
         {
             isDashing = false;
