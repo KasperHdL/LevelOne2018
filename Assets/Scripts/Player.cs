@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
 
 	public Rigidbody body;
     private Animator animator;
+    public Renderer[] renderer;
 
     public PlayerSettings settings;
     
@@ -34,6 +35,11 @@ public class Player : MonoBehaviour {
         animator = GetComponentInChildren<Animator>();
         groundMask = LayerMask.GetMask("Ground");
 	}
+
+    public void SetMaterial(Material material){
+        for(int i = 0 ;i < renderer.Length; i++)
+            renderer[i].material = material;
+    }
 
 	private void Update(){
         if(team == null){
@@ -110,7 +116,6 @@ public class Player : MonoBehaviour {
         if (isDashing && currentDashTime < settings.dashTime)
         {
             currentDashTime += Time.deltaTime;
-            Debug.Log(body.velocity.magnitude);
 
             if (body.velocity.magnitude < settings.dashVelocity)
             {

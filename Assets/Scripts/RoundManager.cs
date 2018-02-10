@@ -56,7 +56,10 @@ public class RoundManager : MonoBehaviour
 		player.transform.position = spawnPositions[player.id].position;
 
 		//remap other team
-		teams[(player.team.teamIndex/* + 1 */) % 2].RemapButton();
+		if(teams.Length == 2)
+			teams[(player.team.teamIndex + 1 ) % 2].RemapButton();
+		else
+			teams[(player.team.teamIndex) % 2].RemapButton();
 
 	}
 }

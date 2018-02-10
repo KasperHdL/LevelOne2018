@@ -87,7 +87,7 @@ public class Team : MonoBehaviour {
         
         int count = 0;
         do{
-            type = (InputControlType) Random.Range((int) InputControlType.DPadUp, (int) InputControlType.Action5);
+            type = (InputControlType) Random.Range((int) InputControlType.LeftTrigger, (int) InputControlType.Action5);
             count ++;
         }while(!IsButtonFree(owner, type) && count < 1000);
 

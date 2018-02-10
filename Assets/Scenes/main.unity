@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 42556477}
   m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
@@ -298,13 +298,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 751337109}
-  m_LocalRotation: {x: 0.2421545, y: -0, z: -0, w: 0.97023773}
-  m_LocalPosition: {x: 0, y: 7.2, z: -16.02}
+  m_LocalRotation: {x: 0.31201532, y: -0, z: -0, w: 0.95007706}
+  m_LocalPosition: {x: 0, y: 8.9, z: -14.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 28.027, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 36.361, y: 0, z: 0}
 --- !u!1001 &840535278
 Prefab:
   m_ObjectHideFlags: 0
@@ -457,9 +457,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e975a16aa9b48faaf010d50341ede8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1599175998834392, guid: 6e13439c8c3674b43bd4ad444d28d00e,
-    type: 2}
+  playerPrefab:
+  - {fileID: 1599175998834392, guid: 6e13439c8c3674b43bd4ad444d28d00e, type: 2}
   players: []
+  teams: []
+  materials:
+  - {fileID: 2100000, guid: ac65c479703d6468bbf5afe2e09b2c29, type: 2}
+  - {fileID: 2100000, guid: d56d8f8441d5dec4ead57a86d98e13ba, type: 2}
+  - {fileID: 2100000, guid: 6b2badd1f299743a9bdf1d6dd4b9ab3d, type: 2}
+  - {fileID: 2100000, guid: 8802f887fd9497c4f9c0066dfa61e8ce, type: 2}
   teamPrefab: {fileID: 1314266283117010, guid: 6de9a69f7e45e4eddbc24f638fa8f7ab, type: 2}
   gameStarted: 0
   lookForControllers: 1

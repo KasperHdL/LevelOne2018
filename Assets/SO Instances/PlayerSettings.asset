@@ -17,11 +17,11 @@ MonoBehaviour:
   jumpForce: 5
   distanceFromGround: 1
   dashDelay: 0.5
-  dashForce: 5000
-  dashVelocity: 8
-  dashTime: 0.5
-  pushDelay: 0.5
+  dashForce: 15000
+  dashVelocity: 10
+  dashTime: 0.2
+  pushDelay: 1
   pushForce: 10
   pushDistance: 20
   pushDegrees: 45
-  deathTorque: 500
+  deathTorque: 50000

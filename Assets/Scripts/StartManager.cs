@@ -4,9 +4,10 @@ using UnityEngine;
 using InControl;
 
 public class StartManager : MonoBehaviour {
-    public GameObject playerPrefab;
+    public GameObject[] playerPrefab;
     public List<Player> players;
     public List<Team> teams;
+    public List<Material> materials;
 
     public GameObject teamPrefab;
 
@@ -26,18 +27,18 @@ public class StartManager : MonoBehaviour {
             if(activeDevice.AnyButtonIsPressed && !inputDevices.Contains(activeDevice)){
                 inputDevices.Add(activeDevice);
 
-                GameObject g = Instantiate(playerPrefab) as GameObject;
+                int teamIndex = (inputDevices.Count-1) / 2;
+                GameObject g = Instantiate(playerPrefab[teamIndex % playerPrefab.Length]) as GameObject;
                 g.name = "Player " + players.Count;
                 g.SetActive(false);
                 Player p = g.GetComponent<Player>();
                 p.Initialize();
                 p.id = players.Count;
+                p.SetMaterial(materials[players.Count % materials.Count]);
                 players.Add(p);
 
                 if(inputDevices.Count % 2 == 0){
                     //create team
-
-                    int teamIndex = (inputDevices.Count-1) / 2;
 
                     g = Instantiate(teamPrefab) as GameObject;
                     Team t = g.GetComponent<Team>();
