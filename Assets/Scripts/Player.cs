@@ -132,7 +132,6 @@ public class Player : MonoBehaviour {
                 pushOnCooldown = false;
                 GameEventHandler.TriggerEvent(GameEvent.CooldownPush, (GameEventArgs)playerArgument);
             }
-            animator.SetBool("Push", true);
 
             if (team.GetActionState(id, Action.Push).WasPressed)
             {
@@ -159,6 +158,7 @@ public class Player : MonoBehaviour {
                         }
                     }
                 }
+                animator.SetBool("Push", true);
             }
         }
 
