@@ -22,3 +22,4 @@ MonoBehaviour:
   pushForce: 10
   pushDistance: 20
   pushDegrees: 45
+  deathTorque: 50000

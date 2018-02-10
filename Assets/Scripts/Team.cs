@@ -11,6 +11,8 @@ public class Team : MonoBehaviour {
     public ActionMap defaultMapping;
     public InputDevice[] inputDevices;
 
+    public int[] playerIds;
+
     [CreateAssetMenu(fileName = "ActionMap", menuName = "", order = 1)]
     public class ActionMap : ScriptableObject{
         //layed out so that you can index into with Action cast to int
@@ -30,6 +32,10 @@ public class Team : MonoBehaviour {
 
         inputDevices = new InputDevice[2] {c0, c1};
         players = new Player[2] {p0, p1};
+        playerIds = new int[2] {
+            p0.id,
+            p1.id,
+        };
 
         playerMaps = new ActionMap[2] 
         {
@@ -39,23 +45,64 @@ public class Team : MonoBehaviour {
     }
 
     public InputControl GetActionState(int playerId, Action action){
-        InputControlType type = playerMaps[playerId].controlType[(int) action];
+        int index = GetIndex(playerId);
+        InputControlType type = playerMaps[index].controlType[(int) action];
 
-        bool onMyController = playerMaps[playerId].onMyController[(int) action];
-        int controllerIndex = playerId + (onMyController ? 0 : 1) % 2;
+        bool onMyController = playerMaps[index].onMyController[(int) action];
+        int controllerIndex = (index + (onMyController ? 0 : 1)) % 2;
 
         return inputDevices[controllerIndex].GetControl(type);
     }
 
 
     public TwoAxisInputControl GetLeftStick(int playerId){
-        return inputDevices[playerId % 2].LeftStick;
+        int index = GetIndex(playerId);
+        return inputDevices[index].LeftStick;
     }
     public TwoAxisInputControl GetRightStick(int playerId){
-        return inputDevices[playerId % 2].RightStick;
+        int index = GetIndex(playerId);
+        return inputDevices[index].RightStick;
     }
     public TwoAxisInputControl GetDPad(int playerId){
-        return inputDevices[playerId % 2].DPad;
+        int index = GetIndex(playerId);
+        return inputDevices[index].DPad;
+    }
+
+    public int GetIndex(int playerId){
+        for(int i = 0; i < playerIds.Length; i++){
+            if(playerId == playerIds[i]) return i;
+        }
+        return -1;
+    }
+
+    public void RemapButton(){
+        //player indices
+        int owner = Random.Range(0,2);
+        int receiver = (owner + 1) % 2;
+
+        int action = Random.Range(0, (int)Action.Count);
+        playerMaps[owner].onMyController[action] = false;
+
+        InputControlType type;
+        
+        int count = 0;
+        do{
+            type = (InputControlType) Random.Range((int) InputControlType.DPadUp, (int) InputControlType.Action5);
+            count ++;
+        }while(!IsButtonFree(owner, type) && count < 1000);
+
+        playerMaps[owner].controlType[action] = type;
+
+    }
+
+    public bool IsButtonFree(int index, InputControlType button){
+        for(int i = 0; i < playerMaps[index].controlType.Length; i++){
+            if(playerMaps[index].controlType[i] == button){
+                return false;
+            }
+        }
+
+        return true;
     }
 
 

@@ -7,7 +7,7 @@ using InControl;
 public class Player : MonoBehaviour {
     public int id; 
 
-	private Rigidbody body;
+	public Rigidbody body;
     private Animator animator;
 
     public PlayerSettings settings;
@@ -27,7 +27,7 @@ public class Player : MonoBehaviour {
 
     private LayerMask groundMask;
 
-	void Start ()
+	public void Initialize()
 	{
         playerArgument.gameObject = gameObject;
 		body = GetComponent<Rigidbody>();
