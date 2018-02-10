@@ -18,7 +18,7 @@ public class Push : MonoBehaviour
     {
         RaycastHit[] hits;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             Vector3 nearestForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
             hits = Physics.SphereCastAll(transform.position, _pushDistance, nearestForward, 0.0001f);
