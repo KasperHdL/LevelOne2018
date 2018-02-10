@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
 
 
     //temp should use team to get remappings
-    public InputDevice inputDevice;
+    public Team team;
 
     private LayerMask groundMask;
 
@@ -26,35 +26,28 @@ public class Player : MonoBehaviour {
 	}
 
 	private void Update(){
-
-        if(inputDevice == null){
-            InputDevice test = InputManager.ActiveDevice;
-
-            if(test.AnyButtonIsPressed){
-                Debug.Log("Controller Registered");
-                inputDevice = test;
-            }
-
+        if(team == null){
             return;
         }
 
         onGround = Physics.Raycast(transform.position, Vector3.down, settings.distanceFromGround, groundMask);
 
-        Vector2 input = inputDevice.LeftStick.Value;
-		Vector3 movementdirection = new Vector3(input.x, 0, input.y);
+        Vector2 input = team.GetLeftStick(id).Value;
 
-		movementdirection = movementdirection.normalized;
+        if(input != Vector2.zero){
+            Vector3 movementdirection = new Vector3(input.x, 0, input.y);
+            movementdirection = movementdirection.normalized;
 
-        if(movementdirection != Vector3.zero){
             Quaternion lookRot = Quaternion.LookRotation(movementdirection);
-            body.transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 30);
+            transform.rotation = lookRot;
+
             float force = (onGround ? settings.movementForce : settings.airForce);
-            body.AddForce(movementdirection * force, ForceMode.Acceleration);
+            body.AddForce(movementdirection * force * Time.deltaTime);
         }
 
         //Jump
         if(onGround){
-            if(inputDevice.Action1.WasPressed){
+            if(team.GetActionState(id, Action.Jump).WasPressed){
                 body.AddForce(Vector3.up * settings.jumpForce, ForceMode.Impulse);
             }
         }
@@ -63,7 +56,7 @@ public class Player : MonoBehaviour {
 
         //Dash
         if(nextDash < Time.time){
-            if(inputDevice.Action2.WasPressed){
+            if(team.GetActionState(id, Action.Dash).WasPressed){
                 body.AddForce(nearestForward * settings.dashForce, ForceMode.Impulse);
                 nextDash = Time.time + settings.dashDelay;
             }
@@ -73,7 +66,7 @@ public class Player : MonoBehaviour {
 
         RaycastHit[] hits;
 
-        if (inputDevice.RightBumper.WasPressed){
+        if (team.GetActionState(id, Action.Push).WasPressed){
             hits = Physics.SphereCastAll(transform.position, settings.pushDistance, nearestForward, 0.0001f);
 
             for( int i = 0; i < hits.Length; i++)
