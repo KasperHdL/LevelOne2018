@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
   movementForce: 1750
+  movementVelocity: 4
   airForce: 500
   jumpForce: 5
   distanceFromGround: 0.6
   dashDelay: 0.5
-  dashForce: 1.5
+  dashForce: 5000
+  dashVelocity: 8
   dashTime: 0.5
   pushDelay: 0.5
   pushForce: 10
