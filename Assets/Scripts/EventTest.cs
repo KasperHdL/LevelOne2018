@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class EventTest : MonoBehaviour 
 {
-	/*PlayerHit,
-    Dash,
-    Jump,
-    Land,
-    Push,
-    CooldownDash,
-    CooldownPush,*/
-
 	void Start()
 	{
 		GameEventHandler.Subscribe(GameEvent.PlayerHit, OnPlayerHit);
