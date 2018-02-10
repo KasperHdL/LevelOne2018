@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44857fb739fd408b81e374a90afb968, type: 3}
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
-  movementForce: 15
-  airForce: 5
+  movementForce: 1500
+  airForce: 50
   jumpForce: 5
   distanceFromGround: 0.5
   dashDelay: 0.5

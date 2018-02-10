@@ -14,11 +14,11 @@ public class Team : MonoBehaviour {
     [CreateAssetMenu(fileName = "ActionMap", menuName = "", order = 1)]
     public class ActionMap : ScriptableObject{
         //layed out so that you can index into with Action cast to int
-        public int[] controllerId;
+        public bool[] onMyController;
         public InputControlType[] controlType;
 
         ActionMap(){
-            controllerId = new int[(int)Action.Count];
+            onMyController = new bool[(int)Action.Count];
             controlType = new InputControlType[(int)Action.Count];
         }
     }
@@ -39,11 +39,12 @@ public class Team : MonoBehaviour {
     }
 
     public InputControl GetActionState(int playerId, Action action){
-        int controllerId = playerMaps[playerId].controllerId[(int) action];
-        if(controllerId == -1) controllerId = playerId;
         InputControlType type = playerMaps[playerId].controlType[(int) action];
 
-        return inputDevices[controllerId].GetControl(type);
+        bool onMyController = playerMaps[playerId].onMyController[(int) action];
+        int controllerIndex = playerId + (onMyController ? 0 : 1) % 2;
+
+        return inputDevices[controllerIndex].GetControl(type);
     }
 
 

@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: DefaultActionMap
   m_EditorClassIdentifier: Assembly-CSharp::Team/ActionMap
-  controllerId: ffffffffffffffffffffffff
+  onMyController: 010101
   controlType: 130000001400000015000000
