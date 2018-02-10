@@ -22,6 +22,7 @@ public class Player : MonoBehaviour {
     [Header("Push")]
     public float pushForce = 10;
     public float pushDistance = 20;
+    public float pushDegrees = 45;
 
 
     //temp should use team to get remappings
@@ -67,11 +68,12 @@ public class Player : MonoBehaviour {
             }
         }
 
+        Vector3 nearestForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+
         //Dash
         if(nextDash < Time.time){
             if(inputDevice.Action2.WasPressed){
-                Debug.Log("Dash");
-                body.AddForce(transform.forward * dashForce, ForceMode.Impulse);
+                body.AddForce(nearestForward * dashForce, ForceMode.Impulse);
                 nextDash = Time.time + dashDelay;
             }
         }
@@ -80,22 +82,26 @@ public class Player : MonoBehaviour {
 
         RaycastHit[] hits;
 
-        if (inputDevice.RightBumper.WasPressed)
-        {
-            hits = Physics.RaycastAll(transform.position, transform.forward, pushDistance);
+        if (inputDevice.RightBumper.WasPressed){
+            hits = Physics.SphereCastAll(transform.position, pushDistance, nearestForward, 0.0001f);
 
             for( int i = 0; i < hits.Length; i++)
             {
                 RaycastHit hit = hits[i];
+
                 Rigidbody hitBody = hit.transform.GetComponent<Rigidbody>();
 
-                if (hitBody && body != hitBody)
+                if (hitBody && hitBody != body)
                 {
-                    hitBody.AddForce(transform.forward * pushForce, ForceMode.Impulse);
+                    Vector3 direction = Vector3.ProjectOnPlane(hitBody.transform.position - transform.position, Vector3.up).normalized;
+                    float dot = Vector3.Dot(direction, nearestForward);
+                    float angle = Mathf.Rad2Deg * Mathf.Acos(dot);
+                    
+                    if(angle < pushDegrees && hitBody != body){
+                        hitBody.AddForce(dot * direction * pushForce, ForceMode.Impulse);
+                    }
                 }
             }
         }
-
-
 	}
 }
