@@ -7,6 +7,8 @@ public class Push : MonoBehaviour
     [SerializeField] private float _pushForce = 10;
     [SerializeField] private float _pushDistance = 40;
     [SerializeField] private float _pushDegrees = 30;
+    [SerializeField] private float _abilityTimer = 0.3f;
+    private float _nextPush = 0.0f;
     private Rigidbody _playerRigidbody;
 
     private void Start()
@@ -18,8 +20,9 @@ public class Push : MonoBehaviour
     {
         RaycastHit[] hits;
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && Time.time > _nextPush)
         {
+            _nextPush = Time.time + _abilityTimer;
             Vector3 nearestForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
             hits = Physics.SphereCastAll(transform.position, _pushDistance, nearestForward, 0.0001f);
 
