@@ -17,6 +17,7 @@ MonoBehaviour:
   distanceFromGround: 0.5
   dashDelay: 0.5
   dashForce: 10
+  dashTime: 1
   pushForce: 10
   pushDistance: 20
   pushDegrees: 45

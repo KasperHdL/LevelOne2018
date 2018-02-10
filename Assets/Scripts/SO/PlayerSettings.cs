@@ -17,8 +17,10 @@ public class PlayerSettings : ScriptableObject {
     [Header("Dash")]
     public float dashDelay;
     public float dashForce;
+    public float dashTime;
     
     [Header("Push")]
+    public float pushDelay;
     public float pushForce = 10;
     public float pushDistance = 20;
     public float pushDegrees = 45;
