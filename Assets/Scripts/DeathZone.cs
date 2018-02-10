@@ -8,8 +8,8 @@ public class DeathZone : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		print(other);
-		print(other.gameObject);
-		roundManager.PlayerDeath(other.gameObject.GetComponent<Player>());
+		if(other.tag == "Player"){
+			roundManager.PlayerDeath(other.gameObject.GetComponent<Player>());
+		}
 	}
 }

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using InControl;
 
-public class Game : MonoBehaviour {
+public class StartManager : MonoBehaviour {
     public GameObject playerPrefab;
     public List<Player> players;
+    public List<Team> teams;
 
     public GameObject teamPrefab;
 
@@ -27,7 +28,9 @@ public class Game : MonoBehaviour {
 
                 GameObject g = Instantiate(playerPrefab) as GameObject;
                 g.name = "Player " + players.Count;
+                g.SetActive(false);
                 Player p = g.GetComponent<Player>();
+                p.Initialize();
                 p.id = players.Count;
                 players.Add(p);
 
@@ -37,8 +40,8 @@ public class Game : MonoBehaviour {
                     int teamIndex = (inputDevices.Count-1) / 2;
 
                     g = Instantiate(teamPrefab) as GameObject;
-                    g.transform.SetParent(transform);
                     Team t = g.GetComponent<Team>();
+                    teams.Add(t);
 
                     players[teamIndex * 2].team = t;
                     players[teamIndex * 2 + 1].team = t;
@@ -62,7 +65,12 @@ public class Game : MonoBehaviour {
                     lookForControllers = false;
                     gameStarted = true;
 
-                    GameEventHandler.TriggerEvent(GameEvent.GameStarted);
+                    GameStartedArgs args = new GameStartedArgs();
+                    args.players = players.ToArray();
+                    args.teams = teams.ToArray();
+
+                    GameEventHandler.TriggerEvent(GameEvent.GameStarted, args);
+                    Destroy(gameObject);
                 }
             }
         }
