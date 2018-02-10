@@ -8,21 +8,9 @@ public class Player : MonoBehaviour {
     public int id; 
 
 	private Rigidbody body;
-	public float movementForce = 5;
 
-    [Header("Jump")]
-	public float jumpForce = 5;
-	public float distanceFromGround = .5f;
-
-    [Header("Dash")]
-    public float dashDelay;
-    public float dashForce;
+    public PlayerSettings settings;
     private float nextDash;
-    
-    [Header("Push")]
-    public float pushForce = 10;
-    public float pushDistance = 20;
-    public float pushDegrees = 45;
 
 
     //temp should use team to get remappings
@@ -57,14 +45,14 @@ public class Player : MonoBehaviour {
         if(movementdirection != Vector3.zero){
             Quaternion lookRot = Quaternion.LookRotation(movementdirection);
             body.transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 30);
-            body.AddForce(movementdirection * movementForce, ForceMode.Acceleration);
+            body.AddForce(movementdirection * settings.movementForce, ForceMode.Acceleration);
         }
 
         //Jump
 
-        if(Physics.Raycast(transform.position, Vector3.down, distanceFromGround, groundMask)){
+        if(Physics.Raycast(transform.position, Vector3.down, settings.distanceFromGround, groundMask)){
             if(inputDevice.Action1.WasPressed){
-                body.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                body.AddForce(Vector3.up * settings.jumpForce, ForceMode.Impulse);
             }
         }
 
@@ -73,8 +61,8 @@ public class Player : MonoBehaviour {
         //Dash
         if(nextDash < Time.time){
             if(inputDevice.Action2.WasPressed){
-                body.AddForce(nearestForward * dashForce, ForceMode.Impulse);
-                nextDash = Time.time + dashDelay;
+                body.AddForce(nearestForward * settings.dashForce, ForceMode.Impulse);
+                nextDash = Time.time + settings.dashDelay;
             }
         }
 
@@ -83,7 +71,7 @@ public class Player : MonoBehaviour {
         RaycastHit[] hits;
 
         if (inputDevice.RightBumper.WasPressed){
-            hits = Physics.SphereCastAll(transform.position, pushDistance, nearestForward, 0.0001f);
+            hits = Physics.SphereCastAll(transform.position, settings.pushDistance, nearestForward, 0.0001f);
 
             for( int i = 0; i < hits.Length; i++)
             {
@@ -97,8 +85,8 @@ public class Player : MonoBehaviour {
                     float dot = Vector3.Dot(direction, nearestForward);
                     float angle = Mathf.Rad2Deg * Mathf.Acos(dot);
                     
-                    if(angle < pushDegrees && hitBody != body){
-                        hitBody.AddForce(dot * direction * pushForce, ForceMode.Impulse);
+                    if(angle < settings.pushDegrees && hitBody != body){
+                        hitBody.AddForce(dot * direction * settings.pushForce, ForceMode.Impulse);
                     }
                 }
             }

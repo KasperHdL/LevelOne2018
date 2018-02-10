@@ -123,11 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5cb13cd5d36d4b18addc8d496a86bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementForce: 20
-  jumpForce: 5
-  distanceFromGround: 0.5
-  dashDelay: 0.3
-  dashForce: 5
-  pushForce: 10
-  pushDistance: 20
-  pushDegrees: 45
+  id: 0
+  settings: {fileID: 11400000, guid: 9bd43d596ea294d72ac38f2c5901c6b0, type: 2}
