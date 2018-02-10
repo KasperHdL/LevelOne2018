@@ -26,4 +26,7 @@ public class PlayerSettings : ScriptableObject {
     public float pushForce = 10;
     public float pushDistance = 20;
     public float pushDegrees = 45;
+
+    [Header("Extra")]
+    public float deathTorque = 500;
 }

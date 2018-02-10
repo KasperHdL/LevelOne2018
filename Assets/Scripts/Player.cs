@@ -7,7 +7,8 @@ using InControl;
 public class Player : MonoBehaviour {
     public int id; 
 
-	private Rigidbody body;
+	public Rigidbody body;
+    private Animator animator;
 
     public PlayerSettings settings;
     
@@ -26,10 +27,11 @@ public class Player : MonoBehaviour {
 
     private LayerMask groundMask;
 
-	void Start ()
+	public void Initialize()
 	{
         playerArgument.gameObject = gameObject;
 		body = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
         groundMask = LayerMask.GetMask("Ground");
 	}
 
@@ -37,6 +39,11 @@ public class Player : MonoBehaviour {
         if(team == null){
             return;
         }
+
+        // Reset animation values
+        animator.SetBool("Jump", false);
+        animator.SetBool("Dashing", false);
+        animator.SetBool("Push", false);
 
         if(Physics.Raycast(transform.position, Vector3.down, settings.distanceFromGround, groundMask))
         {
@@ -74,6 +81,7 @@ public class Player : MonoBehaviour {
                 onGround = false;
 
                 GameEventHandler.TriggerEvent(GameEvent.Jump, (GameEventArgs)playerArgument);
+                animator.SetBool("Jump", true);
             }
         }
 
@@ -95,6 +103,7 @@ public class Player : MonoBehaviour {
                 isDashing = true;
                 currentDashTime = 0.0f;
                 GameEventHandler.TriggerEvent(GameEvent.Dash, (GameEventArgs)playerArgument);
+                animator.SetBool("Dashing", true);
             }
         }
 
@@ -149,8 +158,12 @@ public class Player : MonoBehaviour {
                         }
                     }
                 }
+                animator.SetBool("Push", true);
             }
         }
+
+        // Animation
+        animator.SetFloat("Speed", body.velocity.magnitude);
 	}
     
     void OnCollisionEnter(Collision other)
