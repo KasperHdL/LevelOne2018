@@ -10,6 +10,6 @@ public class DeathZone : MonoBehaviour
 	{
 		print(other);
 		print(other.gameObject);
-		roundManager.PlayerDeath(other.GetComponent<Player>());
+		roundManager.PlayerDeath(other.gameObject.GetComponent<Player>());
 	}
 }
