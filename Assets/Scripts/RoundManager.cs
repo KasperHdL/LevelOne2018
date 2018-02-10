@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class RoundManager : MonoBehaviour
 {
 	public float secondsTillRespawn = 5;
-	public int[] playerScores;
+	public int[] playerDeaths;
 	public Text playerScoreText;
 	public Transform[] spawnPositions;
 	
@@ -15,10 +15,10 @@ public class RoundManager : MonoBehaviour
 	void Start()
 	{
 		players = FindObjectsOfType<Player>();
-		playerScores = new int[players.Length];
+		playerDeaths = new int[players.Length];
 		foreach(Player player in players)
 		{
-			playerScores[player.id] = 0;
+			playerDeaths[player.id] = 0;
 		}
 	}
 
@@ -30,7 +30,7 @@ public class RoundManager : MonoBehaviour
 
 	private IEnumerator RespawnCooldown(Player player)
 	{
-		playerScores[player.id]++;
+		playerDeaths[player.id]++;
 		yield return new WaitForSeconds(secondsTillRespawn);
 		player.gameObject.SetActive(true);
 		player.transform.position = spawnPositions[player.id].position;
