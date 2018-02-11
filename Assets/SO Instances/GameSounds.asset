@@ -36,3 +36,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e6cfaad9503106e489a3abc2d6110605, type: 3}
   pushCooldown:
   - {fileID: 8300000, guid: d4d06d7d76a305742bc449343482bc6c, type: 3}
+  death:
+  - {fileID: 8300000, guid: 10f2400252c4d474e816449efb42d7ce, type: 3}
