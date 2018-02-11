@@ -15,6 +15,13 @@ public class SoundManager : MonoBehaviour {
 		GameEventHandler.Subscribe(GameEvent.Jump, OnJump);
 		GameEventHandler.Subscribe(GameEvent.Land, OnLand);
 		GameEventHandler.Subscribe(GameEvent.Push, OnPush);	
+		GameEventHandler.Subscribe(GameEvent.PlayerDeath, OnDeath);
+	}
+	
+	private void OnDeath(GameEventArgs arguments)
+	{
+		PlayerEventArgument playerArguments = (PlayerEventArgument) arguments;
+		PlayRandomSoundAtPoint(playerArguments.position, gameSound.death);
 	}
 
 	private void OnPlayerHit(GameEventArgs arguments)

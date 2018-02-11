@@ -11,6 +11,7 @@ public class ParticleController : MonoBehaviour
 	public GameObject pushParticles;
 	public GameObject cooldownDashParticles;
 	public GameObject cooldownPushParticles;
+	public GameObject deathParticles;
 
 	void Start()
 	{
@@ -21,6 +22,7 @@ public class ParticleController : MonoBehaviour
 		GameEventHandler.Subscribe(GameEvent.Jump, OnJump);
 		GameEventHandler.Subscribe(GameEvent.Land, OnLand);
 		GameEventHandler.Subscribe(GameEvent.Push, OnPush);	
+		GameEventHandler.Subscribe(GameEvent.PlayerDeath, OnDeath);
 	}
 
 	private void OnPlayerHit(GameEventArgs arguments)
@@ -127,6 +129,21 @@ public class ParticleController : MonoBehaviour
 		cooldownPushParticles.SetActive(true);
 
 		IEnumerator coroutine = DisableParticlesystemOnEndPlay(cooldownPushParticles);
+        StartCoroutine(coroutine);
+	}
+
+	private void OnDeath(GameEventArgs arguments)
+	{
+		PlayerEventArgument playerArguments = (PlayerEventArgument) arguments;
+		if (playerArguments.gameObject != gameObject)
+		{
+			return;
+		}
+
+		ParticleSystem ps = deathParticles.GetComponent<ParticleSystem>();
+		deathParticles.SetActive(true);
+
+		IEnumerator coroutine = DisableParticlesystemOnEndPlay(deathParticles);
         StartCoroutine(coroutine);
 	}
 	

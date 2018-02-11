@@ -11,4 +11,5 @@ public class GameSoundClips : ScriptableObject {
 	public AudioClip[] push;
 	public AudioClip[] dashCooldown;
 	public AudioClip[] pushCooldown;
+	public AudioClip[] death;
 }
