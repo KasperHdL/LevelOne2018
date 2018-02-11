@@ -1,7 +1,11 @@
-﻿public enum Action{
-    Jump,
-    Push,
-    Dash,
+﻿namespace MutateOrDie
+{
+    public enum Action{
+        Jump,
+        Push,
+        Dash,
 
-    Count,
+        Count,
+    }
+
 }

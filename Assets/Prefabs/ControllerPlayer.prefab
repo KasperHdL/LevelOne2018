@@ -1636,6 +1636,7 @@ MonoBehaviour:
   pushParticles: {fileID: 1867961890648740}
   cooldownDashParticles: {fileID: 1528983316520494}
   cooldownPushParticles: {fileID: 1592323837921642}
+  deathParticles: {fileID: 1643816514291750}
 --- !u!137 &137143327185371298
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
