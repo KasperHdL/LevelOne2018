@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 using InControl;
@@ -41,7 +42,7 @@ public class Player : MonoBehaviour {
             renderer[i].material = material;
     }
 
-	private void Update(){
+	private void FixedUpdate(){
         if(team == null){
             return;
         }
@@ -66,7 +67,7 @@ public class Player : MonoBehaviour {
                 
                 if (body.velocity.magnitude < settings.movementVelocity)
                 {
-                    body.AddForce(movementdirection * force * Time.deltaTime);
+                    body.AddForce(movementdirection * force * Time.fixedDeltaTime, ForceMode.Impulse);
                 }
             }
         }
@@ -110,7 +111,7 @@ public class Player : MonoBehaviour {
 
             if (body.velocity.magnitude < settings.dashVelocity)
             {
-                body.AddForce(nearestForward * settings.dashForce * Time.deltaTime);
+                body.AddForce(nearestForward * settings.dashForce * Time.fixedDeltaTime, ForceMode.VelocityChange);
             }
         } else if (isDashing)
         {
@@ -133,6 +134,8 @@ public class Player : MonoBehaviour {
             {
                 nextPush = Time.time + settings.pushDelay;
                 pushOnCooldown = true;
+                
+                body.AddForce(-transform.forward * settings.pushForce/2, ForceMode.Impulse);
 
                 GameEventHandler.TriggerEvent(GameEvent.Push, (GameEventArgs)playerArgument);
                 hits = Physics.SphereCastAll(transform.position, settings.pushDistance, nearestForward, 0.0001f);
@@ -169,6 +172,8 @@ public class Player : MonoBehaviour {
             int rnd = Random.Range(0, other.contacts.Length -1);
             playerArgument.position = other.contacts[rnd].point;
             GameEventHandler.TriggerEvent(GameEvent.PlayerHit, (GameEventArgs)playerArgument);
+            
+            other.rigidbody.AddForce(-other.contacts[0].normal * settings.dashForce / 10, ForceMode.Impulse);
         }
 
         if (other.gameObject.tag == "Ground")
