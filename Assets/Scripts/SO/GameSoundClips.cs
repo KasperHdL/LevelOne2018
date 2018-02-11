@@ -4,6 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameSounds", menuName = "", order = 1)]
 public class GameSoundClips : ScriptableObject {
+	[Header("PlayerSounds")]
 	public AudioClip[] playerHit;
 	public AudioClip[] dash;
 	public AudioClip[] jump;
@@ -12,4 +13,7 @@ public class GameSoundClips : ScriptableObject {
 	public AudioClip[] dashCooldown;
 	public AudioClip[] pushCooldown;
 	public AudioClip[] death;
+
+	[Header("Announcer Sounds")]
+	public AudioClip[] deathAnnouncings;
 }

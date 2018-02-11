@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
 	public GameSoundClips gameSound;
+	public AudioSource announcer;
 	public float volume = 1.0f;
 
 	void Start()
@@ -21,6 +22,9 @@ public class SoundManager : MonoBehaviour {
 	private void OnDeath(GameEventArgs arguments)
 	{
 		PlayerEventArgument playerArguments = (PlayerEventArgument) arguments;
+		
+		PlayRandomAnnouncerClip(gameSound.deathAnnouncings);
+
 		PlayRandomSoundAtPoint(playerArguments.position, gameSound.death);
 	}
 
@@ -71,5 +75,18 @@ public class SoundManager : MonoBehaviour {
 		int rnd = Random.Range(0, sound.Length-1);
 
 		AudioSource.PlayClipAtPoint(sound[rnd], position, volume);
+	}
+
+	private void PlayRandomAnnouncerClip(AudioClip[] sound)
+	{
+		if(announcer.isPlaying)
+		{
+			return;
+		}
+
+		int rnd = Random.Range(0, sound.Length-1);
+	
+		announcer.clip = sound[rnd];
+		announcer.Play();
 	}
 }
