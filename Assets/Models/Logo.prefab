@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23880942116189068}
   - component: {fileID: 54711386119620200}
   - component: {fileID: 75644539249491442}
+  - component: {fileID: 114739266477559606}
   m_Layer: 0
   m_Name: Mutate
   m_TagString: Untagged
@@ -329,6 +330,19 @@ ConstantForce:
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: -0.3}
+--- !u!114 &114739266477559606
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1443176194144406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e67148cd83d3040969a48775d94fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceMultiplier: 2
+  speedMultiplier: 2
 --- !u!145 &145326478007575854
 SpringJoint:
   m_ObjectHideFlags: 1
