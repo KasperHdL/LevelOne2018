@@ -17,7 +17,7 @@ public class LoadScenesAdditively : MonoBehaviour
 
 			if (scene != null && !scene.isLoaded)
 			{
-				SceneManager.LoadScene(scene.buildIndex, LoadSceneMode.Additive);
+				SceneManager.LoadScene("Resources/Backdrop.scene");
 			}
 		}
 	} 

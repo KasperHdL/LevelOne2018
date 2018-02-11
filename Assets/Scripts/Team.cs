@@ -100,6 +100,8 @@ public class Team : MonoBehaviour {
 
         playerMaps[owner].controlType[action] = type;
 
+        uIManager.SetButton(receiver, (Action) action, false, type);
+
     }
 
     public bool IsButtonFree(int index, InputControlType button){

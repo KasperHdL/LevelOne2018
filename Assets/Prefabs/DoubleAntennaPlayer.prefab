@@ -2234,7 +2234,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   body: {fileID: 0}
-  renderer: []
+  renderer:
+  - {fileID: 137143327185371298}
+  - {fileID: 23806640407438254}
+  - {fileID: 23055067106528278}
+  - {fileID: 23360134151700524}
+  - {fileID: 23545688962966116}
   settings: {fileID: 11400000, guid: 9bd43d596ea294d72ac38f2c5901c6b0, type: 2}
   team: {fileID: 0}
 --- !u!114 &114417400692535230

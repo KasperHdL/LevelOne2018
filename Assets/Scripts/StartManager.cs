@@ -48,7 +48,7 @@ public class StartManager : MonoBehaviour {
                 players.Add(p);
 
                 if(uiManager != null)
-                    uiManager.PlayerAdded(teamIndex, p, materials[players.Count % materials.Count]);
+                    uiManager.PlayerAdded(teamIndex, p, materials[(players.Count - 1) % materials.Count]);
 
                 if(inputDevices.Count % 2 == 0){
                     //create team
