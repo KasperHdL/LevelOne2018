@@ -7,6 +7,10 @@ public class ExampleArgs : GameEventArgs{
     public int someInt;
 }
 
+public class CountdownArgs : GameEventArgs{
+    public int count;
+}
+
 public class GameStartedArgs : GameEventArgs{
     public Player[] players;
     public Team[] teams;

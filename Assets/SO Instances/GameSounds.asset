@@ -38,3 +38,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d4d06d7d76a305742bc449343482bc6c, type: 3}
   death:
   - {fileID: 8300000, guid: 10f2400252c4d474e816449efb42d7ce, type: 3}
+  deathAnnouncings:
+  - {fileID: 8300000, guid: 270ddcf97a7311b4292fdf8733423b96, type: 3}
+  - {fileID: 8300000, guid: 56773d88e41cf0c489a11ed328ea3a5d, type: 3}
+  - {fileID: 8300000, guid: f018eef5224b175428ef077f2f9da3bc, type: 3}
+  - {fileID: 8300000, guid: a8f01dbf242d7334795fdd9128d8aa2f, type: 3}
+  - {fileID: 8300000, guid: 2b36bed9759233948ae833bbc1c9371b, type: 3}
+  - {fileID: 8300000, guid: 426e954ca0b58194aa061ea6ac7e1621, type: 3}
+  countdown:
+  - {fileID: 8300000, guid: 72718b24acb52df4993e751ec1ef1c73, type: 3}
+  - {fileID: 8300000, guid: 3756dbe8db148cf47810c6fb94e80542, type: 3}
+  - {fileID: 8300000, guid: 0b7c390f45e1fe345be90bd9e15a24d7, type: 3}
+  gameStart:
+  - {fileID: 8300000, guid: 7792c6dce4c9ecd42b90c2ad440c60ec, type: 3}
+  - {fileID: 8300000, guid: f945eff62e359f448ae33a95e0444fef, type: 3}
+  - {fileID: 8300000, guid: d08f1ad2689a2b44abae8dfad44a276e, type: 3}

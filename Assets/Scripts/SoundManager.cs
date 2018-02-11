@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
 	public GameSoundClips gameSound;
+	public AudioSource announcer;
 	public float volume = 1.0f;
 
 	void Start()
@@ -16,11 +17,16 @@ public class SoundManager : MonoBehaviour {
 		GameEventHandler.Subscribe(GameEvent.Land, OnLand);
 		GameEventHandler.Subscribe(GameEvent.Push, OnPush);	
 		GameEventHandler.Subscribe(GameEvent.PlayerDeath, OnDeath);
+		GameEventHandler.Subscribe(GameEvent.GameStarted, AnnounceGo);
+		GameEventHandler.Subscribe(GameEvent.GameCountdown, CountDown);
 	}
 	
 	private void OnDeath(GameEventArgs arguments)
 	{
 		PlayerEventArgument playerArguments = (PlayerEventArgument) arguments;
+		
+		PlayRandomAnnouncerClip(gameSound.deathAnnouncings);
+
 		PlayRandomSoundAtPoint(playerArguments.position, gameSound.death);
 	}
 
@@ -66,10 +72,52 @@ public class SoundManager : MonoBehaviour {
 		PlayRandomSoundAtPoint(playerArguments.position, gameSound.pushCooldown);
 	}
 
+	private void CountDown(GameEventArgs arguments)
+	{
+		CountdownArgs countdownArgs = (CountdownArgs) arguments;
+
+		if (countdownArgs.count >= gameSound.countdown.Length || countdownArgs.count < 0)
+		{
+			return;
+		}
+
+		PlayAnnouncerClip(gameSound.countdown[countdownArgs.count]);	
+	}
+
+	private void AnnounceGo(GameEventArgs Arguments)
+	{
+		announcer.Stop();
+		PlayRandomAnnouncerClip(gameSound.gameStart);
+	}
+
 	private void PlayRandomSoundAtPoint(Vector3 position, AudioClip[] sound)
 	{
 		int rnd = Random.Range(0, sound.Length-1);
 
 		AudioSource.PlayClipAtPoint(sound[rnd], position, volume);
+	}
+
+	private void PlayAnnouncerClip(AudioClip sound)
+	{
+		if(announcer.isPlaying)
+		{
+			announcer.Stop();
+		}
+	
+		announcer.clip = sound;
+		announcer.Play();
+	}
+
+	private void PlayRandomAnnouncerClip(AudioClip[] sound)
+	{
+		if(announcer.isPlaying)
+		{
+			return;
+		}
+
+		int rnd = Random.Range(0, sound.Length-1);
+	
+		announcer.clip = sound[rnd];
+		announcer.Play();
 	}
 }
