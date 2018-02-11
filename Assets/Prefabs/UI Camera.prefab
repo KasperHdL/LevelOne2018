@@ -7409,14 +7409,14 @@ MonoBehaviour:
   - {fileID: 1484894198860724}
   - {fileID: 1219387661447244}
   buttonSprites:
-  - {fileID: 21300000, guid: a774fdb9ed0253f4a8d2b9ea28939b14, type: 3}
-  - {fileID: 21300000, guid: 7521532c1f5d3984a8523be565695fbf, type: 3}
-  - {fileID: 21300000, guid: 6aac47ed65c3811409da39631131bdbd, type: 3}
-  - {fileID: 21300000, guid: 86cb789504e199c48999e195f53245f4, type: 3}
-  - {fileID: 21300000, guid: a774fdb9ed0253f4a8d2b9ea28939b14, type: 3}
-  - {fileID: 21300000, guid: 7521532c1f5d3984a8523be565695fbf, type: 3}
-  - {fileID: 21300000, guid: 6aac47ed65c3811409da39631131bdbd, type: 3}
-  - {fileID: 21300000, guid: 86cb789504e199c48999e195f53245f4, type: 3}
+  - {fileID: 21300000, guid: 975e322095c30494c94b1e6ec2c337fb, type: 3}
+  - {fileID: 21300000, guid: 956f66bce3724ba49ab80ebe1a14ff71, type: 3}
+  - {fileID: 21300000, guid: 16c253167ab72084cb1ad71b8454de7e, type: 3}
+  - {fileID: 21300000, guid: 2f52cd0e1442e784eabd5b52615eca9a, type: 3}
+  - {fileID: 21300000, guid: 4f072640e8fc9f04dbd42f5b93ae88fc, type: 3}
+  - {fileID: 21300000, guid: 169edf369c01c9b408c75455bef30336, type: 3}
+  - {fileID: 21300000, guid: 68afefa39c30db346adffa8c2ed2234b, type: 3}
+  - {fileID: 21300000, guid: e05aca12c775b604f87ddf66981db2ce, type: 3}
   startIndex: 15
   startActionMap: {fileID: 11400000, guid: 64050b25c3cdd4258822f6ae9502f2a4, type: 2}
   colors: []
