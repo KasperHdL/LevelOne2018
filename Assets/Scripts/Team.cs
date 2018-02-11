@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using InControl;
 
 public class Team : MonoBehaviour {
@@ -10,6 +11,7 @@ public class Team : MonoBehaviour {
 
     public ActionMap defaultMapping;
     public InputDevice[] inputDevices;
+    public UIManager uIManager;
 
     public int[] playerIds;
 
@@ -27,7 +29,9 @@ public class Team : MonoBehaviour {
 
     public ActionMap[] playerMaps;
 
-    public void Initialize(int teamIndex, InputDevice c0, InputDevice c1, Player p0, Player p1){
+    public void Initialize(int teamIndex, InputDevice c0, InputDevice c1, Player p0, Player p1, UIManager uIManager)
+    {
+        this.uIManager = uIManager;
         this.teamIndex = teamIndex;
 
         inputDevices = new InputDevice[2] {c0, c1};
@@ -42,6 +46,8 @@ public class Team : MonoBehaviour {
             Instantiate(defaultMapping),
             Instantiate(defaultMapping),
         };
+
+  //      UpdateText();
     }
 
     public InputControl GetActionState(int playerId, Action action){
@@ -104,6 +110,4 @@ public class Team : MonoBehaviour {
 
         return true;
     }
-
-
 }

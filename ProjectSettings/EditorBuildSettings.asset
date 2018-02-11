@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/main.unity
+    guid: 89a50a2b67894431b872dd153ad7f60c
+  - enabled: 1
+    path: Assets/Scenes/Backdrop.unity
+    guid: 4bb9de982f0f05743acf5092c422fbe2
