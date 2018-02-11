@@ -16,4 +16,6 @@ public class GameSoundClips : ScriptableObject {
 
 	[Header("Announcer Sounds")]
 	public AudioClip[] deathAnnouncings;
+	public AudioClip[] countdown;
+	public AudioClip[] gameStart;
 }
