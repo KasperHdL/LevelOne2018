@@ -368,6 +368,46 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 7c5b0757e5621d54d88ebf0c26bd3892, type: 3}
   m_PrefabInternal: {fileID: 1254905341}
+--- !u!1 &220168515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 220168517}
+  - component: {fileID: 220168516}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &220168516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 220168515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636ad1efcc95544d09f75a863cb3aca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &220168517
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 220168515}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 294.41623, y: 0.16890764, z: 150.60095}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &270408566 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 7c5b0757e5621d54d88ebf0c26bd3892, type: 3}
@@ -11409,7 +11449,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 8802f887fd9497c4f9c0066dfa61e8ce, type: 2}
   teamPrefab: {fileID: 1314266283117010, guid: 6de9a69f7e45e4eddbc24f638fa8f7ab, type: 2}
   gameStarted: 0
-  gameStartTime: 4
+  gameStartTime: 3.25
   gameCountdownStarted: 0
   lookForControllers: 1
 --- !u!4 &1079714857

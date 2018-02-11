@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GameEventHandler {
+public class GameEventHandler : MonoBehaviour{
 	
 	public delegate void Event(GameEventArgs args);
 
