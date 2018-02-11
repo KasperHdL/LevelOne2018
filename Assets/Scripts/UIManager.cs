@@ -7,7 +7,6 @@ using MutateOrDie;
 
 public class UIManager : MonoBehaviour {
 
-	[Header("References")]
 	public List<Player> players;
 	public List<Team> team;
 
@@ -21,7 +20,8 @@ public class UIManager : MonoBehaviour {
 	public Image[] pushImage;
 	
 
-	public GameObject[] uiPlayerContainers;
+	public UIPlayer[] playerObjs;
+	public GameObject[] playerUIs;
 
 	public Sprite[] buttonSprites;
 	public InputControlType startIndex;
@@ -35,11 +35,15 @@ public class UIManager : MonoBehaviour {
 		GameStartedArgs args = (GameStartedArgs) eventArgs;
 	}
 
-	public void PlayerAdded(Player player, Material mat){
+	public void PlayerAdded(int teamIndex, Player player, Material mat){
 		Debug.Log("Player " + player.id + " Added");
 		players.Add(player);
 
-		uiPlayerContainers[player.id].SetActive(true);
+		playerObjs[player.id].SetMaterial(mat);
+		playerObjs[player.id].gameObject.SetActive(true);
+
+		playerUIs[player.id].SetActive(true);
+
 
 		colors.Add(mat.color);
 
