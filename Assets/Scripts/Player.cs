@@ -130,7 +130,7 @@ public class Player : MonoBehaviour {
                 GameEventHandler.TriggerEvent(GameEvent.CooldownPush, (GameEventArgs)playerArgument);
             }
 
-            if (team.GetActionState(id, Action.Push).WasPressed)
+            else if (team.GetActionState(id, Action.Push).WasPressed)
             {
                 nextPush = Time.time + settings.pushDelay;
                 pushOnCooldown = true;
