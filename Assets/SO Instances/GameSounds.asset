@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb3ec13c3984494aa2a62fb178d74c5, type: 3}
   m_Name: GameSounds
   m_EditorClassIdentifier: 
+  soundtrack: {fileID: 8300000, guid: d3f9ca3fe5265934b84790e998e0d119, type: 3}
   playerHit:
   - {fileID: 8300000, guid: cbc0e5f98c6a3fc498f55b7b73094ba2, type: 3}
   dash:
