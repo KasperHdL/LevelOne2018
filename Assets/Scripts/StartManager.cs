@@ -4,6 +4,7 @@ using UnityEngine;
 using InControl;
 
 public class StartManager : MonoBehaviour {
+    public UIManager uiManager;
     public GameObject[] playerPrefab;
     public List<Player> players;
     public List<Team> teams;
@@ -15,6 +16,7 @@ public class StartManager : MonoBehaviour {
 
     public bool gameStarted = false;
     public bool lookForControllers = true;
+
 
 	void Start () {
         inputDevices = new List<InputDevice>(4);
@@ -31,11 +33,15 @@ public class StartManager : MonoBehaviour {
                 GameObject g = Instantiate(playerPrefab[teamIndex % playerPrefab.Length]) as GameObject;
                 g.name = "Player " + players.Count;
                 g.SetActive(false);
+
                 Player p = g.GetComponent<Player>();
                 p.Initialize();
                 p.id = players.Count;
                 p.SetMaterial(materials[players.Count % materials.Count]);
                 players.Add(p);
+
+                if(uiManager != null)
+                    uiManager.PlayerAdded(p);
 
                 if(inputDevices.Count % 2 == 0){
                     //create team
@@ -52,7 +58,8 @@ public class StartManager : MonoBehaviour {
                             inputDevices[teamIndex * 2], 
                             inputDevices[teamIndex * 2 + 1],
                             players[teamIndex * 2],
-                            players[teamIndex * 2 + 1]
+                            players[teamIndex * 2 + 1],
+                            uiManager
                         );
                 }
             }
