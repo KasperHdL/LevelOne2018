@@ -1,6 +1,7 @@
 ﻿public enum GameEvent{
     Example,
     GameStarted,
+    GameCountdown,
 
     PlayerHit,
     PlayerDeath,
