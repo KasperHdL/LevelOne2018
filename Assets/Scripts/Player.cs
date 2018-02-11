@@ -51,15 +51,6 @@ public class Player : MonoBehaviour {
         animator.SetBool("Dashing", false);
         animator.SetBool("Push", false);
 
-        if(Physics.Raycast(transform.position, Vector3.down, settings.distanceFromGround, groundMask))
-        {
-            if (!onGround)
-            {
-                GameEventHandler.TriggerEvent(GameEvent.Land, (GameEventArgs)playerArgument);
-            }
-            onGround = true;
-        }
-
         Vector2 input = team.GetLeftStick(id).Value;
 
         if (!isDashing)
@@ -178,6 +169,16 @@ public class Player : MonoBehaviour {
             int rnd = Random.Range(0, other.contacts.Length -1);
             playerArgument.position = other.contacts[rnd].point;
             GameEventHandler.TriggerEvent(GameEvent.PlayerHit, (GameEventArgs)playerArgument);
+        }
+
+        if (other.gameObject.tag == "Ground")
+        {
+            if (!onGround)
+            {
+                GameEventHandler.TriggerEvent(GameEvent.Land, (GameEventArgs)playerArgument);
+            }
+
+            onGround = true;
         }
     }
 }
