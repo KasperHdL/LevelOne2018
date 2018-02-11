@@ -4,6 +4,9 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameSounds", menuName = "", order = 1)]
 public class GameSoundClips : ScriptableObject {
+	[Header("Soundtrack")]
+	public AudioClip soundtrack;
+
 	[Header("PlayerSounds")]
 	public AudioClip[] playerHit;
 	public AudioClip[] dash;

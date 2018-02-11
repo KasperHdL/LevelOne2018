@@ -5,7 +5,9 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour {
 	public GameSoundClips gameSound;
 	public AudioSource announcer;
+	public AudioSource music;
 	public float volume = 1.0f;
+	public float musicVolume = 1.0f;
 
 	void Start()
 	{
@@ -19,6 +21,24 @@ public class SoundManager : MonoBehaviour {
 		GameEventHandler.Subscribe(GameEvent.PlayerDeath, OnDeath);
 		GameEventHandler.Subscribe(GameEvent.GameStarted, AnnounceGo);
 		GameEventHandler.Subscribe(GameEvent.GameCountdown, CountDown);
+
+		StartCoroutine("FadeInMusic");
+	}
+
+	private IEnumerator FadeInMusic()
+	{
+		music.clip = gameSound.soundtrack;
+		music.volume = 0;
+		music.Play();
+		float currentVolume = 0;
+		float volumeIncrease = 0.1f;
+
+		while(currentVolume < musicVolume)
+		{
+			currentVolume += volumeIncrease * Time.deltaTime;
+			music.volume = currentVolume;
+			yield return null;
+		}
 	}
 	
 	private void OnDeath(GameEventArgs arguments)
